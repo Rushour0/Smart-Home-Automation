@@ -8,7 +8,7 @@ This is project is in development process. It is a project which connects ESP32 
 
 <table>
 <tr><td>MAX 30102 - SpO2 & Heart Rate Sensor</td><td>MLX 90614 - Temperature Sensor</td></tr>
-<tr><td><video controls><source  src="https://raw.githubusercontent.com/Rushour0/Smart-Home-Automation/master/videos/Max%2030102%20-%20BPM%20Change%20detect.mp4"></video></td><td><video controls><source src="https://raw.githubusercontent.com/Rushour0/Smart-Home-Automation/master/videos/MLX 90614 - Temperature Change detect.mp4" type="video/mp4"></video></td></tr>
+<tr><td><video src="https://user-images.githubusercontent.com/72869428/232599847-e22a605a-1b65-4355-88a8-8679ee8df6b3.mp4"></td><td><video src="https://user-images.githubusercontent.com/72869428/232599998-696e0c51-0854-408b-bfbe-f27d3d27b82c.mp4" ></td></tr>
 </table>
 
 ### Data Transmission
@@ -20,5 +20,5 @@ This is project is in development process. It is a project which connects ESP32 
 
 <table>
 <tr><td>Connected Alexa with ESP32</td></tr>
-<tr><td><video controls> <source src="https://raw.githubusercontent.com/Rushour0/Smart-Home-Automation/master/videos/Alexa Connected.mp4"></video></td></tr>
+<tr><td><video src="https://user-images.githubusercontent.com/72869428/232600080-02deca65-f1d8-43dc-8706-7c3630351728.mp4"></td></tr>
 </table>
