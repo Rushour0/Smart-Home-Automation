@@ -86,19 +86,20 @@ void setup() {
   {
     Serial.println("MAX30102 Sensor was not found. Please check wiring/power.");
     Serial.println("Restart Arduino once wiring is fixed");
-    while (1)
-      ;
+    // while (1)
+    //   ;
   }
   Serial.println("Place your index finger on the sensor with steady pressure.");
   particleSensor.setup();                     //Configure sensor with default settings
   particleSensor.setPulseAmplitudeRed(0x0A);  //Turn Red LED to low to indicate sensor is running
   particleSensor.setPulseAmplitudeGreen(0);   //Turn off Green LED
+  particleSensor.enableDIETEMPRDY();
 }
 
 void loop() {
   long irValue = particleSensor.getIR();
-  
-  if (checkForBeat(irValue) == true)  // checkForBeat is a function of heartRate.h Library
+
+    if (checkForBeat(irValue) == true)  // checkForBeat is a function of heartRate.h Library
   {
     //We sensed a beat!
 
@@ -117,12 +118,8 @@ void loop() {
     }
   }
 
-  if (irValue < 50000) {
-    ardprintf("No Finger Detected");
-  } else {
-    ardprintf("IR : %l | BPM : %f | Avg BPM : %d |", irValue, beatsPerMinute, beatAvg);
-  }
 
-  // ardprintf("Ambient : %f °C | Ambient : %f °F | Object : %f °C | Object : %f °F ", mlx.readAmbientTempC(), mlx.readAmbientTempF(), mlx.readObjectTempC(), mlx.readObjectTempF());
+  ardprintf("spo2=98&bpm=%d&temp=%f", beatAvg, mlx.readObjectTempC());
+
   // delay(500);
 }

@@ -20,6 +20,8 @@ void secondLightChanged(uint8_t brightness);
 void feederCallBack(uint8_t value);
 
 // Change this!!
+// const char* ssid = "MSI 0826";
+// const char* password = "hihihihi";
 const char* ssid = "JioFiber-CFPcg";
 const char* password = "orieveit8muroh2X";
 
@@ -31,20 +33,17 @@ EspalexaDevice* device3;  //this is optional
 
 void setup() {
   Serial.begin(115200);
+  Serial2.begin(9600, SERIAL_8N1, 16, 17);
   servo.attach(13);
   delay(2000);
   // Initialise wifi connection
   wifiConnected = connectWifi();
 
   if (wifiConnected) {
-
     // Define your devices here.
     espalexa.addDevice("Light 1", firstLightChanged);        //simplest definition, default state off
     espalexa.addDevice("Light 2", secondLightChanged, 255);  //third parameter is beginning state (here fully on)
-
-    device3 = new EspalexaDevice("Feeder", feederCallBack);  //you can also create the Device objects yourself like here
-    espalexa.addDevice(device3);                             //and then add them
-    device3->setValue(128);                                  //this allows you to e.g. update their state value at any time!
+    espalexa.addDevice("Feeder", feederCallBack);
 
     espalexa.begin();
 
@@ -56,9 +55,15 @@ void setup() {
   }
 }
 
+int timer;
+
 void loop() {
   espalexa.loop();
-  delay(1);
+  if (Serial2.available() > 0) {
+    String url = "https://script.google.com/macros/s/AKfycby0vwNNkLOUnsocrExKQ0GbKq4bxtP2CqkyrOd4zYwxAETCmCDQTIAyhQDpjoPKqPSuxQ/exec?" + Serial2.readString();
+    Serial.println(url);
+  }
+
 }
 
 //our callback functions
@@ -84,9 +89,9 @@ void feederCallBack(uint8_t feeder) {
   Serial.println(feeder);
   //do what you need to do here
   if (feeder > 0) {
-
+    Serial.println("Rotating");
     servo.write(90);
-    delay(5000);
+    delay(1000);
     servo.write(0);
     delay(1000);
   }

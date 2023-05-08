@@ -1,15 +1,11 @@
-#define COUNT_LOW 0
- #define COUNT_HIGH 8888
- #define TIMER_WIDTH 16
-#include "esp32-hal-ledc.h"
+#define RXp2 16
+#define TXp2 17
 void setup() {
-   ledcSetup(1, 50, TIMER_WIDTH); // channel 1, 50 Hz, 16-bit width
-   ledcAttachPin(2, 1);   // GPIO 22 assigned to channel 1
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  Serial2.begin(9600, SERIAL_8N1, RXp2, TXp2, true);
 }
 void loop() {
-   for (int i=COUNT_LOW ; i < COUNT_HIGH ; i=i+100)
-   {
-      ledcWrite(1, i);       // sweep servo 1
-      delay(50);
-   }
+
+  Serial.println(Serial2.readString());
 }
